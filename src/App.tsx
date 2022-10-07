@@ -1,11 +1,20 @@
+import { useEffect } from "react";
 import Beer from "./components/Beer/Beer";
 import Beers from "./components/Beers/Beers";
-import { mockBeer1 } from "./mocks/mocks";
+import useBeerApi from "./hooks/useBeerApi";
 
 const App = (): JSX.Element => {
+  const { getRandomBeer } = useBeerApi();
+
+  useEffect(() => {
+    (async () => {
+      await getRandomBeer();
+    })();
+  }, [getRandomBeer]);
+
   return (
     <>
-      <Beer beer={mockBeer1} />
+      <Beer />
       <Beers />
     </>
   );

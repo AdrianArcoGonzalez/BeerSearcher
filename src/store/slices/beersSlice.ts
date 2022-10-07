@@ -11,7 +11,7 @@ export const initialBeersState: InitialBeersState = {
     name: "",
     description: "",
     id: 0,
-    imageSrc: "",
+    image_url: "",
   },
   foundBeers: [],
 };
