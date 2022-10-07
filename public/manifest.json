@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Beer Searcher",
+  "name": "Beer Searcher with PunkAPI",
   "icons": [
     {
       "src": "favicon.ico",
