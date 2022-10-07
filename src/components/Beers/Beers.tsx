@@ -11,7 +11,7 @@ const Beers = (): JSX.Element => {
           <li className="beer" key={beer.id}>
             <img
               className="beer__img"
-              src={beer.imageSrc}
+              src={beer.image_url}
               alt={beer.name}
               height={100}
               width={100}
