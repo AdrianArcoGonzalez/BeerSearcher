@@ -1,4 +1,4 @@
-import { Beer } from "../../interfaces";
+import { Beer } from "../../interfaces/interfaces";
 import { mockBeers } from "../../mocks/mocks";
 import BeersStyled from "./BeersStyled";
 
