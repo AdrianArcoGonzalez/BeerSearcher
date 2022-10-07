@@ -1,4 +1,4 @@
-import { Beer } from "../interfaces";
+import { Beer } from "../interfaces/interfaces";
 
 export const mockBeer1: Beer = {
   id: 1,
