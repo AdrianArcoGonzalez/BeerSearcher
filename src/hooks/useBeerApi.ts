@@ -8,7 +8,7 @@ const useBeerApi = () => {
   const dispatch = useAppDispatch();
 
   const getRandomBeer = async () => {
-    const response = await axios.get(environments.randomBeer);
+    const response = await axios(environments.randomBeer);
     const data: Beer = response.data[0];
     const newBeer: Beer = {
       description: data.description,
