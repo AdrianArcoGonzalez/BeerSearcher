@@ -8,16 +8,23 @@ const useBeerApi = () => {
   const dispatch = useAppDispatch();
 
   const getRandomBeer = async () => {
-    const response = await axios(environments.randomBeer);
-    const data: Beer = response.data[0];
-    const newBeer: Beer = {
-      description: data.description,
-      image_url: data.image_url,
-      name: data.name,
-      id: data.id,
-    };
+    try {
+      const response = await axios(environments.randomBeer);
+      const data: Beer = response.data[0];
+      if (data.image_url === null) {
+        getRandomBeer();
+        return;
+      }
 
-    dispatch(randomBeerActionCreator(newBeer));
+      const newBeer: Beer = {
+        description: data.description,
+        image_url: data.image_url,
+        name: data.name,
+        id: data.id,
+      };
+
+      dispatch(randomBeerActionCreator(newBeer));
+    } catch (error) {}
   };
 
   return { getRandomBeer };
