@@ -10,6 +10,9 @@ const BeerStyled = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    &__image {
+      object-fit: contain;
+    }
   }
   .beer-description {
     display: flex;

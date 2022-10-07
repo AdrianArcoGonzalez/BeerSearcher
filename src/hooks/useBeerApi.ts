@@ -9,9 +9,17 @@ const useBeerApi = () => {
 
   const getRandomBeer = async () => {
     const response = await axios.get(environments.randomBeer);
-    const newBeer: Beer = response.data[0];
+    const data: Beer = response.data[0];
+    const newBeer: Beer = {
+      description: data.description,
+      image_url: data.image_url,
+      name: data.name,
+      id: data.id,
+    };
+
     dispatch(randomBeerActionCreator(newBeer));
   };
+
   return { getRandomBeer };
 };
 

@@ -1,5 +1,4 @@
 import useBeerApi from "../../hooks/useBeerApi";
-import { Beer as IBeer } from "../../interfaces/interfaces";
 import { useAppSelector } from "../../store/hooks";
 import Button from "../Button/Button";
 import BeerStyled from "./BeerStyled";
