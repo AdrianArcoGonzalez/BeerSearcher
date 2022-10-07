@@ -1,4 +1,5 @@
 import { Beer as IBeer } from "../../interfaces/interfaces";
+import Button from "../Button/Button";
 import BeerStyled from "./BeerStyled";
 
 interface BeerProps {
@@ -12,9 +13,19 @@ const Beer = ({
     <BeerStyled>
       <div className="image-block">
         <h2 className="image-block__beer-title">{name}</h2>
-        <img src={imageSrc} alt={name} className="image-block__image" />
+        <img
+          src={imageSrc}
+          alt={name}
+          className="image-block__image"
+          height={250}
+          width={250}
+        />
       </div>
-      <p>{description}</p>
+      <p className="beer-description">{description}</p>
+      <div className="buttons-block">
+        <Button actionOnClick={() => {}} text="Another Beer" />
+        <Button actionOnClick={() => {}} text="Random non alcoholic beer" />
+      </div>
     </BeerStyled>
   );
 };
