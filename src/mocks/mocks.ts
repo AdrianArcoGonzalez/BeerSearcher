@@ -9,4 +9,4 @@ export const mockBeer1: Beer = {
     "https://www.wbbrew.com/wp-content/uploads/2017/07/WBB_GOB_500_bottle-400x400.jpg",
 };
 
-const mockBeerArray = [mockBeer1, mockBeer1, mockBeer1];
+export const mockBeerArray = [mockBeer1, mockBeer1, mockBeer1];
