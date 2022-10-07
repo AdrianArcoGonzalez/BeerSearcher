@@ -1,9 +1,10 @@
-import { Beer } from "../../interfaces/interfaces";
 import { mockBeers } from "../../mocks/mocks";
-import BeersReducer, { loadBeersActionCreator } from "./beersSlice";
+import BeersReducer, {
+  initialBeersState,
+  loadBeersActionCreator,
+} from "./beersSlice";
 
 describe("Given a beersReducer function", () => {
-  const previousState: Beer[] = [];
   describe("When it's invoked with an unkown action and the wrong state", () => {
     test("Then it should return the previous state", () => {
       const wrongState = undefined;
@@ -11,18 +12,18 @@ describe("Given a beersReducer function", () => {
 
       const beersReducerReturn = BeersReducer(wrongState, unkownAction);
 
-      expect(beersReducerReturn).toStrictEqual(previousState);
+      expect(beersReducerReturn).toStrictEqual(initialBeersState);
     });
   });
 
   describe("When it's invoked with the correct state and a loadBeers action", () => {
     test("Then it should return the new state with the new beers", () => {
       const beersReducerReturn = BeersReducer(
-        previousState,
+        initialBeersState,
         loadBeersActionCreator(mockBeers)
       );
 
-      expect(beersReducerReturn).toStrictEqual(mockBeers);
+      expect(beersReducerReturn.foundBeers).toStrictEqual(mockBeers);
     });
   });
 });
