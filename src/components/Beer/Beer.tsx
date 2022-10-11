@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import BeerStyled from "./BeerStyled";
 
 const Beer = (): JSX.Element => {
-  const { getRandomBeer } = useBeerApi();
+  const { getRandomBeer, getNonAlcoholicBeer } = useBeerApi();
   const {
     randomBeer: { description, image_url, name },
   } = useAppSelector((state) => state.beers);
@@ -24,7 +24,10 @@ const Beer = (): JSX.Element => {
       <p className="beer-description">{description}</p>
       <div className="buttons-block">
         <Button actionOnClick={getRandomBeer} text="Another Beer" />
-        <Button actionOnClick={() => {}} text="Random non alcoholic beer" />
+        <Button
+          actionOnClick={getNonAlcoholicBeer}
+          text="Random non alcoholic beer"
+        />
       </div>
     </BeerStyled>
   );
