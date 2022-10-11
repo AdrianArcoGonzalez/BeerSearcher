@@ -4,12 +4,17 @@ import FilterStyled from "./FilterStyled";
 const Filter = (): JSX.Element => {
   return (
     <FilterStyled>
-      <h2>Search</h2>
+      <h2 className="title">Search</h2>
 
-      <input type="text" placeholder="Search" />
-      <label htmlFor="checkbox">
-        <input type="checkbox" id="checkbox" placeholder="by name" />
-        <input type="checkbox" id="checkbox" placeholder="by description" />
+      <input type="text" placeholder="Search" className="input-text" />
+      <label htmlFor="name" className="label-input">
+        <input type="checkbox" id="name" />
+        by name
+      </label>
+
+      <label htmlFor="description" className="label-input">
+        <input type="checkbox" id="description" />
+        by description
       </label>
 
       <Button actionOnClick={() => {}} text="Search" />
