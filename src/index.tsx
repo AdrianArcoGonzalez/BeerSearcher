@@ -4,14 +4,17 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "react-toastify/dist/ReactToastify.css";
 import "@fontsource/roboto";
 import "./index.css";
+import { ToastContainer } from "react-toastify";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
   <Provider store={store}>
+    <ToastContainer />
     <App />
   </Provider>
 );
