@@ -1,5 +1,4 @@
 import React, { SyntheticEvent, useState } from "react";
-import useBeerApi from "../../hooks/useBeerApi";
 import Button from "../Button/Button";
 import { errorModal, loadingModal } from "../Modals/Modals";
 import FilterStyled from "./FilterStyled";
