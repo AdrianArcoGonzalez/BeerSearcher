@@ -7,15 +7,16 @@ const FilterStyled = styled.form`
   .title {
     padding: 10px 0;
   }
+
   .input-text {
     padding: 10px;
     font-size: 1.3rem;
-    font-weight: bolder;
   }
 
   input {
     font-family: inherit;
   }
+
   .label-input {
     padding: 10px;
     font-family: inherit;

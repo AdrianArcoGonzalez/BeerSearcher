@@ -1,8 +1,9 @@
 import ButtonStyled from "./ButtonStyled";
 
 interface ButtonProps {
-  actionOnClick: () => void;
+  actionOnClick?: () => void;
   text: string;
+  type?: string;
 }
 
 const Button = ({ actionOnClick, text }: ButtonProps): JSX.Element => {
