@@ -21,11 +21,11 @@ export const beerSlice = createSlice({
   initialState: initialBeersState,
   reducers: {
     loadBeers: (state: InitialBeersState, action: PayloadAction<Beer[]>) => ({
-      ...initialBeersState,
+      ...state,
       foundBeers: action.payload,
     }),
     randomBeer: (state: InitialBeersState, action: PayloadAction<Beer>) => ({
-      ...initialBeersState,
+      ...state,
       randomBeer: action.payload,
     }),
   },

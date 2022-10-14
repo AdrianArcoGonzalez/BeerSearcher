@@ -3,7 +3,10 @@ import { useCallback } from "react";
 import { errorModal, loadingModal } from "../components/Modals/Modals";
 import { Beer } from "../interfaces/interfaces";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { randomBeerActionCreator } from "../store/slices/beersSlice";
+import {
+  loadBeersActionCreator,
+  randomBeerActionCreator,
+} from "../store/slices/beersSlice";
 import environments from "../utils/environments";
 
 const useBeerApi = () => {
@@ -57,7 +60,24 @@ const useBeerApi = () => {
     }
   }, [dispatch, randomBeer.id, randomNumber]);
 
-  return { getRandomBeer, getNonAlcoholicBeer };
+  const searchByBrewedBefore = useCallback(
+    async (brewedBeforeDate: string) => {
+      const { data } = await axios(
+        environments.searchByBrewedBefore + brewedBeforeDate
+      );
+
+      const foundBeers: Beer[] = [];
+
+      for (let i = 0; i < 6; i++) {
+        foundBeers.push(data[i]);
+      }
+
+      dispatch(loadBeersActionCreator(foundBeers));
+    },
+    [dispatch]
+  );
+
+  return { getRandomBeer, getNonAlcoholicBeer, searchByBrewedBefore };
 };
 
 export default useBeerApi;
