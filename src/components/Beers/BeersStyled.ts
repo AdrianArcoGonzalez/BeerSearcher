@@ -5,7 +5,10 @@ const BeersStyled = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
+  .beers-list {
+    margin: 0;
+    padding: 0;
+  }
   .beer {
     display: flex;
 

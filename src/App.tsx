@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import Beer from "./components/Beer/Beer";
 import Beers from "./components/Beers/Beers";
+import Filter from "./components/Filter/Filter";
 import useBeerApi from "./hooks/useBeerApi";
 
 const App = (): JSX.Element => {
@@ -16,6 +17,7 @@ const App = (): JSX.Element => {
   return (
     <>
       <Beer />
+      <Filter />
       <Beers />
     </>
   );
