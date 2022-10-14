@@ -1,20 +1,19 @@
-import { Beer } from "../../interfaces/interfaces";
-import { mockBeers } from "../../mocks/mocks";
+import { useAppSelector } from "../../store/hooks";
 import BeersStyled from "./BeersStyled";
 
 const Beers = (): JSX.Element => {
-  const beers: Beer[] = mockBeers;
+  const { foundBeers } = useAppSelector((state) => state.beers);
   return (
     <BeersStyled>
       <ul className="beers-list">
-        {beers.map((beer) => (
+        {foundBeers.map((beer) => (
           <li className="beer" key={beer.id}>
             <img
               className="beer__img"
               src={beer.image_url}
               alt={beer.name}
-              height={100}
-              width={100}
+              height={150}
+              width={150}
             />
             <article className="beer__info">
               <h2 className="beer__title">{beer.name}</h2>

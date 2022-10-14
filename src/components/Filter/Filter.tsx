@@ -1,11 +1,13 @@
 import React, { SyntheticEvent, useState } from "react";
+import useBeerApi from "../../hooks/useBeerApi";
 import Button from "../Button/Button";
-import { errorModal, loadingModal } from "../Modals/Modals";
+import { errorModal } from "../Modals/Modals";
 import FilterStyled from "./FilterStyled";
 
 const Filter = (): JSX.Element => {
   const [state, setState] = useState({ searchBy: "name" });
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("name");
+  const { searchByBrewedBefore } = useBeerApi();
 
   const handleChangeSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, searchBy: event.target.value });
@@ -16,13 +18,12 @@ const Filter = (): JSX.Element => {
   };
 
   const validate = () => {
-    const regex = new RegExp("[a-zA-Z0-9]");
+    const regex = new RegExp("^[a-z0-9_-].*?$");
     return regex.test(search);
   };
 
-  const handleSubmit = (event: SyntheticEvent) => {
+  const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
-    console.log(search);
     if (search === "") {
       errorModal("You need to fill the search space");
       return;
@@ -31,7 +32,14 @@ const Filter = (): JSX.Element => {
       return;
     }
 
-    loadingModal("Aloja");
+    if (state.searchBy === "brewedBefore") {
+      try {
+        await searchByBrewedBefore(search);
+      } catch (error) {
+        errorModal("Brewed before must be done by MM-YYYY");
+      }
+      return;
+    }
   };
 
   return (
