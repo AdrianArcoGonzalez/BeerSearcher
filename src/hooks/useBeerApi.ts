@@ -60,24 +60,54 @@ const useBeerApi = () => {
     }
   }, [dispatch, randomBeer.id, randomNumber]);
 
-  const searchByBrewedBefore = useCallback(
-    async (brewedBeforeDate: string) => {
+  const searchByBrewedBefore = async (brewedBeforeDate: string) => {
+    const foundBeers: Beer[] = [];
+    try {
       const { data } = await axios(
         environments.searchByBrewedBefore + brewedBeforeDate
       );
-
-      const foundBeers: Beer[] = [];
-
+      if (data.length[0]) {
+        errorModal("No beers found");
+        return;
+      }
       for (let i = 0; i < 6; i++) {
         foundBeers.push(data[i]);
       }
 
       dispatch(loadBeersActionCreator(foundBeers));
-    },
-    [dispatch]
-  );
+    } catch (error) {
+      errorModal("Something went wrong");
+    }
+  };
 
-  return { getRandomBeer, getNonAlcoholicBeer, searchByBrewedBefore };
+  const searchByName = async (nameToSearch: string) => {
+    const foundBeers: Beer[] = [];
+    try {
+      const { data } = await axios(environments.searchByName + nameToSearch);
+
+      if (data.length === 0) {
+        errorModal("No beers found");
+        return;
+      }
+
+      if (data.length > 5) {
+        for (let i = 0; i < 6; i++) {
+          foundBeers.push(data[i]);
+        }
+        dispatch(loadBeersActionCreator(foundBeers));
+      }
+      dispatch(loadBeersActionCreator(data));
+    } catch (error) {
+      errorModal("Something went wrong");
+    }
+  };
+
+  return {
+    getRandomBeer,
+    getNonAlcoholicBeer,
+    searchByBrewedBefore,
+    searchByName,
+  };
 };
 
 export default useBeerApi;
