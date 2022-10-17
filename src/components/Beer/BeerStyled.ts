@@ -4,6 +4,7 @@ const BeerStyled = styled.section`
   display: flex;
   padding: 20px;
   border: 1px solid black;
+  width: 100%;
 
   .image-block {
     display: flex;
