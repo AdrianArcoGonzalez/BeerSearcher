@@ -14,7 +14,7 @@ const root = createRoot(container);
 
 root.render(
   <Provider store={store}>
-    <ToastContainer />
+    <ToastContainer limit={1} />
     <App />
   </Provider>
 );

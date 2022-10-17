@@ -6,8 +6,8 @@ import FilterStyled from "./FilterStyled";
 
 const Filter = (): JSX.Element => {
   const [state, setState] = useState({ searchBy: "name" });
-  const [search, setSearch] = useState("name");
-  const { searchByBrewedBefore } = useBeerApi();
+  const [search, setSearch] = useState("");
+  const { searchByBrewedBefore, searchByName } = useBeerApi();
 
   const handleChangeSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, searchBy: event.target.value });
@@ -18,12 +18,13 @@ const Filter = (): JSX.Element => {
   };
 
   const validate = () => {
-    const regex = new RegExp("^[a-z0-9_-].*?$");
+    const regex = new RegExp("[a-zA-Z0-9_-]");
     return regex.test(search);
   };
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault();
+
     if (search === "") {
       errorModal("You need to fill the search space");
       return;
@@ -33,11 +34,13 @@ const Filter = (): JSX.Element => {
     }
 
     if (state.searchBy === "brewedBefore") {
-      try {
-        await searchByBrewedBefore(search);
-      } catch (error) {
-        errorModal("Brewed before must be done by MM-YYYY");
-      }
+      await searchByBrewedBefore(search);
+      errorModal("Brewed before must be done by MM-YYYY");
+      return;
+    }
+
+    if (state.searchBy === "name") {
+      await searchByName(search);
       return;
     }
   };
@@ -54,6 +57,7 @@ const Filter = (): JSX.Element => {
       />
 
       <input
+        checked
         type="radio"
         value="name"
         name="filter"
