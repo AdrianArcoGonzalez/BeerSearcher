@@ -13,11 +13,17 @@ const BeerStyled = styled.section`
     &__image {
       object-fit: contain;
     }
+    &__beer-title {
+      padding: 10px;
+      height: 80px;
+    }
   }
   .beer-description {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    padding: 10px;
   }
   .buttons-block {
     display: flex;
