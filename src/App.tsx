@@ -6,13 +6,14 @@ import Filter from "./components/Filter/Filter";
 import useBeerApi from "./hooks/useBeerApi";
 
 const App = (): JSX.Element => {
-  const { getRandomBeer } = useBeerApi();
+  const { getRandomBeer, searchByName } = useBeerApi();
 
   useEffect(() => {
     (async () => {
       await getRandomBeer();
+      await searchByName("beer");
     })();
-  }, [getRandomBeer]);
+  }, [getRandomBeer, searchByName]);
 
   return (
     <AppStyled>

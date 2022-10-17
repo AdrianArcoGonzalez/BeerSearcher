@@ -80,27 +80,30 @@ const useBeerApi = () => {
     }
   };
 
-  const searchByName = async (nameToSearch: string) => {
-    const foundBeers: Beer[] = [];
-    try {
-      const { data } = await axios(environments.searchByName + nameToSearch);
+  const searchByName = useCallback(
+    async (nameToSearch: string) => {
+      const foundBeers: Beer[] = [];
+      try {
+        const { data } = await axios(environments.searchByName + nameToSearch);
 
-      if (data.length === 0) {
-        errorModal("No beers found");
-        return;
-      }
-
-      if (data.length > 5) {
-        for (let i = 0; i < 6; i++) {
-          foundBeers.push(data[i]);
+        if (data.length === 0) {
+          errorModal("No beers found");
+          return;
         }
-        dispatch(loadBeersActionCreator(foundBeers));
+
+        if (data.length > 5) {
+          for (let i = 0; i < 6; i++) {
+            foundBeers.push(data[i]);
+          }
+          dispatch(loadBeersActionCreator(foundBeers));
+        }
+        dispatch(loadBeersActionCreator(data));
+      } catch (error) {
+        errorModal("Something went wrong");
       }
-      dispatch(loadBeersActionCreator(data));
-    } catch (error) {
-      errorModal("Something went wrong");
-    }
-  };
+    },
+    [dispatch]
+  );
 
   return {
     getRandomBeer,
