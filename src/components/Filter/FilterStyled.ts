@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FilterStyled = styled.form`
+const FilterStyled = styled.div`
   font-family: "Roboto";
   display: flex;
   flex-direction: column;

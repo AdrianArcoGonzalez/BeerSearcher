@@ -83,6 +83,8 @@ const useBeerApi = () => {
   const searchByName = useCallback(
     async (nameToSearch: string) => {
       const foundBeers: Beer[] = [];
+      let beerPush = 0;
+
       try {
         const { data } = await axios(environments.searchByName + nameToSearch);
 
@@ -91,13 +93,16 @@ const useBeerApi = () => {
           return;
         }
 
-        if (data.length > 5) {
-          for (let i = 0; i < 6; i++) {
-            foundBeers.push(data[i]);
+        do {
+          if (data[beerPush].image_url !== null) {
+            foundBeers.push(data[beerPush]);
           }
-          dispatch(loadBeersActionCreator(foundBeers));
-        }
-        dispatch(loadBeersActionCreator(data));
+          beerPush++;
+        } while (foundBeers.length < 5);
+
+        dispatch(loadBeersActionCreator(foundBeers));
+
+        // dispatch(loadBeersActionCreator(data));
       } catch (error) {
         errorModal("Something went wrong");
       }
