@@ -19,7 +19,7 @@ const FilterStyled = styled.div`
   }
 
   .title {
-    padding: 20px;
+    padding: 10px 20px;
   }
 
   .input-text {

@@ -4,10 +4,19 @@ interface ButtonProps {
   actionOnClick?: () => void;
   text: string;
   type?: string;
+  disabled?: boolean;
 }
 
-const Button = ({ actionOnClick, text }: ButtonProps): JSX.Element => {
-  return <ButtonStyled onClick={actionOnClick}>{text}</ButtonStyled>;
+const Button = ({
+  actionOnClick,
+  text,
+  disabled,
+}: ButtonProps): JSX.Element => {
+  return (
+    <ButtonStyled disabled={disabled} onClick={actionOnClick}>
+      {text}
+    </ButtonStyled>
+  );
 };
 
 export default Button;

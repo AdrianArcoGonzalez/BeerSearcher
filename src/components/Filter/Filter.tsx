@@ -35,7 +35,7 @@ const Filter = (): JSX.Element => {
 
     if (state.searchBy === "brewedBefore") {
       await searchByBrewedBefore(search);
-      errorModal("Brewed before must be done by MM-YYYY");
+
       return;
     }
 

@@ -62,6 +62,8 @@ const useBeerApi = () => {
 
   const searchByBrewedBefore = async (brewedBeforeDate: string) => {
     const foundBeers: Beer[] = [];
+    let beerPush = 0;
+
     try {
       const { data } = await axios(
         environments.searchByBrewedBefore + brewedBeforeDate
@@ -70,9 +72,12 @@ const useBeerApi = () => {
         errorModal("No beers found");
         return;
       }
-      for (let i = 0; i < 6; i++) {
-        foundBeers.push(data[i]);
-      }
+      do {
+        if (data[beerPush].image_url !== null) {
+          foundBeers.push(data[beerPush]);
+        }
+        beerPush++;
+      } while (foundBeers.length < 5);
 
       dispatch(loadBeersActionCreator(foundBeers));
     } catch (error) {
@@ -101,8 +106,6 @@ const useBeerApi = () => {
         } while (foundBeers.length < 5);
 
         dispatch(loadBeersActionCreator(foundBeers));
-
-        // dispatch(loadBeersActionCreator(data));
       } catch (error) {
         errorModal("Something went wrong");
       }
