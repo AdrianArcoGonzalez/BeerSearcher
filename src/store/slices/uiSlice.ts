@@ -12,7 +12,7 @@ export const uiSlice = createSlice({
   name: "ui",
   initialState: initialUiState,
   reducers: {
-    disableButton: (state: InitialUiState) => ({
+    toggleButton: (state: InitialUiState) => ({
       ...state,
       buttonDisabled: !state.buttonDisabled,
     }),
@@ -20,6 +20,7 @@ export const uiSlice = createSlice({
 });
 
 const UiReducer = uiSlice.reducer;
-export const { disableButton: DisableButtonActionCreator } = uiSlice.actions;
+
+export const { toggleButton: toggleButtonActionCreator } = uiSlice.actions;
 
 export default UiReducer;
