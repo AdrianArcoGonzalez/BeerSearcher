@@ -4,6 +4,7 @@ const BeerStyled = styled.section`
   display: flex;
   padding: 20px;
   border: 1px solid black;
+  width: 100%;
 
   .image-block {
     display: flex;
@@ -13,11 +14,17 @@ const BeerStyled = styled.section`
     &__image {
       object-fit: contain;
     }
+    &__beer-title {
+      padding: 10px;
+      height: 80px;
+    }
   }
   .beer-description {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    padding: 10px;
   }
   .buttons-block {
     display: flex;

@@ -46,40 +46,44 @@ const Filter = (): JSX.Element => {
   };
 
   return (
-    <FilterStyled onSubmit={handleSubmit}>
+    <FilterStyled>
       <h2 className="title">Search</h2>
+      <form onSubmit={handleSubmit} className="form">
+        <div className="inputs-block">
+          <input
+            type="text"
+            placeholder="Search"
+            className="input-text"
+            onChange={handleChangeText}
+          />
 
-      <input
-        type="text"
-        placeholder="Search"
-        className="input-text"
-        onChange={handleChangeText}
-      />
+          <fieldset className="radio-inputs">
+            <input
+              checked
+              type="radio"
+              value="name"
+              name="filter"
+              id="name"
+              onChange={handleChangeSelect}
+            />
+            <label htmlFor="name" className="label-input">
+              by name
+            </label>
 
-      <input
-        checked
-        type="radio"
-        value="name"
-        name="filter"
-        id="name"
-        onChange={handleChangeSelect}
-      />
-      <label htmlFor="name" className="label-input">
-        by name
-      </label>
-
-      <input
-        type="radio"
-        value="brewedBefore"
-        name="filter"
-        id="brewedBefore"
-        onChange={handleChangeSelect}
-      />
-      <label htmlFor="brewedBefore" className="label-input">
-        by brewed before
-      </label>
-
-      <Button type="submit" text="Search" />
+            <input
+              type="radio"
+              value="brewedBefore"
+              name="filter"
+              id="brewedBefore"
+              onChange={handleChangeSelect}
+            />
+            <label htmlFor="brewedBefore" className="label-input">
+              by brewed before
+            </label>
+          </fieldset>
+        </div>
+        <Button type="submit" text="Search" />
+      </form>
     </FilterStyled>
   );
 };

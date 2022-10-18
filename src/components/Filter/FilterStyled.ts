@@ -1,11 +1,25 @@
 import styled from "styled-components";
 
-const FilterStyled = styled.form`
+const FilterStyled = styled.div`
   font-family: "Roboto";
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .form {
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .inputs-block {
+    display: flex;
+    gap: 30px;
+  }
 
   .title {
-    padding: 10px 0;
+    padding: 20px;
   }
 
   .input-text {
@@ -20,6 +34,12 @@ const FilterStyled = styled.form`
   .label-input {
     padding: 10px;
     font-family: inherit;
+  }
+
+  .radio-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

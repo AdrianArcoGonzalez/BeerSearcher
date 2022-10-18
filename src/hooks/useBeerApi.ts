@@ -80,27 +80,35 @@ const useBeerApi = () => {
     }
   };
 
-  const searchByName = async (nameToSearch: string) => {
-    const foundBeers: Beer[] = [];
-    try {
-      const { data } = await axios(environments.searchByName + nameToSearch);
+  const searchByName = useCallback(
+    async (nameToSearch: string) => {
+      const foundBeers: Beer[] = [];
+      let beerPush = 0;
 
-      if (data.length === 0) {
-        errorModal("No beers found");
-        return;
-      }
+      try {
+        const { data } = await axios(environments.searchByName + nameToSearch);
 
-      if (data.length > 5) {
-        for (let i = 0; i < 6; i++) {
-          foundBeers.push(data[i]);
+        if (data.length === 0) {
+          errorModal("No beers found");
+          return;
         }
+
+        do {
+          if (data[beerPush].image_url !== null) {
+            foundBeers.push(data[beerPush]);
+          }
+          beerPush++;
+        } while (foundBeers.length < 5);
+
         dispatch(loadBeersActionCreator(foundBeers));
+
+        // dispatch(loadBeersActionCreator(data));
+      } catch (error) {
+        errorModal("Something went wrong");
       }
-      dispatch(loadBeersActionCreator(data));
-    } catch (error) {
-      errorModal("Something went wrong");
-    }
-  };
+    },
+    [dispatch]
+  );
 
   return {
     getRandomBeer,
